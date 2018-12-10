@@ -4,13 +4,41 @@
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
     <ion-title>
-      Home
+      Player Selection
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content padding>
-  The world is your oyster.
-  <p>If you get lost, the
-    <a target="_blank" rel="noopener" href="https://ionicframework.com/docs">docs</a> will be your guide.</p>
+  <ion-card text-center>
+    <ion-card-content>
+      <ion-item>
+        <ion-input type="text" [(ngModel)]="newPlayer" placeholder="From 2 to 8 players!"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-button block (click)="setNewPlayer(newPlayer)" [disabled]="players.length > 7">
+          Add Player
+        </ion-button>
+      </ion-item>
+    </ion-card-content>
+
+  </ion-card>
+  <ion-card text-center *ngIf="players.length > 0">
+    <ion-card-header class="text-center">List of Players</ion-card-header>
+    <ion-card-content>
+      <ion-list>
+        <ion-item *ngFor="let player of players; let i = index">
+          <ion-item>
+            Player {{i+1}}: {{player}}
+            <ion-button danger end (click)="removePlayer(player)">
+                <ion-icon name="trash"></ion-icon>
+              </ion-button>
+          </ion-item>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+  <ion-item *ngIf="players.length > 0">
+    <ion-button (click)="setPlayers()">Start Game</ion-button>
+  </ion-item>
 </ion-content>
