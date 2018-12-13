@@ -7,7 +7,7 @@ import { PlayerService } from '../helpers/PlayerService';
   templateUrl: './game.component.html',
   styleUrls: ['./game.component.scss']
 })
-export class GameComponent implements OnInit{
+export class GameComponent implements OnInit {
   actualRound: number;
   players: Array<Player>;
   actualPoints: Array<number>;
