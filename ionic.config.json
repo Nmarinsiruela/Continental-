@@ -1,6 +1,8 @@
 {
   "name": "continental",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular",
   "pro_id": "82b8f321"
 }

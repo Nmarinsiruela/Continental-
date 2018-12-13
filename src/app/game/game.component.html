@@ -1,0 +1,27 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      Round {{actualRound}}
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-card text-center>
+    <ion-card-header class="text-center">Score Table</ion-card-header>
+    <ion-card-content>
+      <ion-list>
+        <ion-item *ngFor="let player of players; let i = index">
+          <ion-label color="primary" floating>{{player.name}} - Points: {{player.count}}</ion-label>
+          <ion-input type="number" [(ngModel)]="actualPoints[i]"></ion-input>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+  <ion-item *ngIf="actualPoints.indexOf(null) == -1">
+    <ion-button (click)="nextRound()">Next Round</ion-button>
+  </ion-item>
+</ion-content>
