@@ -14,6 +14,7 @@ export class GameComponent implements OnInit {
   actualPoints: Array<number>;
   roundCompleted: boolean;
   buttonText: string;
+  roundText: string;
   storeCompleted: boolean;
   constructor(private pService: PlayerService) {
     this.actualPoints = [];
@@ -26,32 +27,37 @@ export class GameComponent implements OnInit {
     for (let x = 0; x < this.players.length; x++) {
       this.actualPoints.push(null);
     }
+    this.roundText = AppConstants.GET_ROUND_TEXT(this.actualRound);
     this.setButtonText();
     this.storeCompleted = true;
   }
 
   nextRound() {
     this.pService.setNewRound(this.actualPoints);
-    this.actualRound = this.pService.getRound();
+    const newRound = this.pService.getRound();
 
-    if (this.actualRound === AppConstants.END_GAME) {
-      // End Game
-    }
-    this.setButtonText();
-    for (let x = 0; x < this.players.length; x++) {
-      this.actualPoints[x] = null;
+    // if (this.actualRound === AppConstants.END_GAME + 1) {
+    //   this.endGame();
+    // }
+    if (newRound === 2) {
+      this.endGame();
+    } else {
+      this.actualRound = newRound;
+      this.roundText = AppConstants.GET_ROUND_TEXT(this.actualRound);
+      this.setButtonText();
+      for (let x = 0; x < this.players.length; x++) {
+        this.actualPoints[x] = null;
+      }
     }
   }
 
   endGame() {
+    this.pService.getEndPlayers();
     this.pService.navigatePage(AppConstants.END_URL);
   }
 
   setButtonText() {
-    console.log(this.actualRound);
-    if (this.actualRound === AppConstants.FINAL_ROUND) {
-      this.buttonText = AppConstants.BUTTON_TEXT_FINAL;
-    } else if (this.actualRound === AppConstants.END_GAME) {
+    if (this.actualRound === AppConstants.END_GAME) {
       this.buttonText = AppConstants.BUTTON_TEXT_END;
     } else {
       this.buttonText = AppConstants.BUTTON_TEXT_BASE;
@@ -60,5 +66,7 @@ export class GameComponent implements OnInit {
 
   clearGame() {
     this.pService.clearStorage();
+    this.players = [];
+    this.actualRound = 0;
   }
 }

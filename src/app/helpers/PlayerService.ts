@@ -41,10 +41,11 @@ export class PlayerService {
   }
 
   clearStorage() {
-    this.storage.clear().then( () => {
-      this.players = [];
-      this.navigatePage(AppConstants.HOME_URL);
-    });
+    this.storage.remove(AppConstants.PLAYERS);
+    this.storage.remove(AppConstants.ROUNDS);
+    this.players = [];
+    this.actualRound = 0;
+    this.navigatePage(AppConstants.HOME_URL);
   }
 
   navigatePage(destiny) {
@@ -54,7 +55,7 @@ export class PlayerService {
     this.navCtrl.navigateForward(destiny);
   }
 
-  setActualPlayers() {
+  setNewGame() {
     this.storage.set(AppConstants.PLAYERS, JSON.stringify(this.players));
     this.storage.set(AppConstants.ROUNDS, AppConstants.STARTER_ROUND);
   }
@@ -82,5 +83,27 @@ export class PlayerService {
     if (index !== -1) {
         this.players.splice(index, 1);
     }
+  }
+
+  clearPlayersScore() {
+    for (let x = 0; x < this.players.length; x++) {
+      this.players[x].count = 0;
+    }
+    this.setNewGame();
+  }
+
+  getEndPlayers() {
+    this.players.sort((obj1, obj2) => {
+      if (obj1.count > obj2.count) {
+          return 1;
+      }
+      if (obj1.count < obj2.count) {
+          return -1;
+      }
+      return 0;
+  });
+
+  this.players = this.players.slice(0, 3);
+  this.storage.set(AppConstants.PLAYERS, JSON.stringify(this.players));
   }
 }

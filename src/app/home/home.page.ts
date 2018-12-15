@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { PlayerService } from '../helpers/PlayerService';
 import { Player } from '../helpers/Player';
 import { AppConstants } from '../helpers/Constants';
@@ -7,7 +7,7 @@ import { AppConstants } from '../helpers/Constants';
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
 })
-export class HomePage {
+export class HomePage implements OnInit {
   newPlayer: string;
   players: Array<Player>;
   constructor(private pService: PlayerService) {
@@ -15,6 +15,9 @@ export class HomePage {
     this.players = [];
   }
 
+  async ngOnInit() {
+    this.players = await this.pService.getStoredPlayers();
+  }
   setNewPlayer(name) {
     this.players = this.pService.setNewPlayer(name);
     this.newPlayer = '';
@@ -25,7 +28,7 @@ export class HomePage {
   }
 
   setPlayers() {
-    this.pService.setActualPlayers();
+    this.pService.setNewGame();
     this.pService.navigatePage(AppConstants.GAME_URL);
     this.players = [];
   }

@@ -20,6 +20,11 @@ const routes: Routes = [
     path: AppConstants.GAME_URL,
     loadChildren: './game/game.module#GamePageModule',
     canActivate: [StoredUsersGuard]
+  },
+  {
+    path: AppConstants.END_URL,
+    loadChildren: './end/end.module#EndPageModule',
+    canActivate: [StoredUsersGuard]
   }
 ];
 
