@@ -1,19 +1,17 @@
 import { Player } from './Player';
 import { Injectable } from '@angular/core';
 import { Storage } from '@ionic/storage';
+import { AppConstants } from './Constants';
+import { NavController } from '@ionic/angular';
 @Injectable({
   providedIn: 'root'
 })
 export class PlayerService {
-  ROUNDS = 'rounds';
   numberOfPlayers: number;
   players: Array<Player>;
   actualRound: number;
 
-  constructor(private storage: Storage) {
-    // this.getStoredPlayers();
-    // this.getStoredRound();
-  }
+  constructor(private storage: Storage, private navCtrl: NavController) {}
 
   getPlayers() {
     return this.players;
@@ -24,19 +22,15 @@ export class PlayerService {
   }
 
   async getStoredPlayers() {
-    console.log('Trying to fetch Storage for Players');
-    return this.getFromStorageAsync('players').then(playersArray => {
+    return this.getFromStorageAsync(AppConstants.PLAYERS).then(playersArray => {
       const data = JSON.parse(playersArray);
-      console.log('Stored Data for Players', data);
       this.players = data !== null ? data : [];
       return this.players;
     });
   }
 
   async getStoredRound() {
-    console.log('Trying to fetch Storage for Rounds');
-    return this.getFromStorageAsync(this.ROUNDS).then(actualRound => {
-      console.log('Stored Data for Rounds', actualRound);
+    return this.getFromStorageAsync(AppConstants.ROUNDS).then(actualRound => {
       this.actualRound = +actualRound;
       return this.actualRound;
     });
@@ -46,9 +40,23 @@ export class PlayerService {
     return await this.storage.get(keyStorage);
   }
 
+  clearStorage() {
+    this.storage.clear().then( () => {
+      this.players = [];
+      this.navigatePage(AppConstants.HOME_URL);
+    });
+  }
+
+  navigatePage(destiny) {
+    if (destiny === AppConstants.HOME_URL) {
+      this.navCtrl.navigateRoot(destiny);
+    }
+    this.navCtrl.navigateForward(destiny);
+  }
+
   setActualPlayers() {
-    this.storage.set('players', JSON.stringify(this.players));
-    this.storage.set(this.ROUNDS, '0');
+    this.storage.set(AppConstants.PLAYERS, JSON.stringify(this.players));
+    this.storage.set(AppConstants.ROUNDS, AppConstants.STARTER_ROUND);
   }
 
   setNewRound(newPoints) {
@@ -58,14 +66,15 @@ export class PlayerService {
       this.players[x].count += newPoints[x];
     }
 
-    this.storage.set('players', JSON.stringify(this.players));
-    this.storage.set(this.ROUNDS, '' + this.actualRound);
+    this.storage.set(AppConstants.PLAYERS, JSON.stringify(this.players));
+    this.storage.set(AppConstants.ROUNDS, '' + this.actualRound);
   }
 
   setNewPlayer(name) {
     if (name !== '') {
       this.players.push(new Player(name));
     }
+    return this.players;
   }
 
   removePlayer(name) {

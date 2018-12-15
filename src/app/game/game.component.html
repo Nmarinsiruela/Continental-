@@ -3,13 +3,15 @@
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-title>
+    <ion-title *ngIf="storeCompleted == true" name="bubbles">
       Round {{actualRound}}
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content padding>
+<ion-spinner *ngIf="storeCompleted == false"></ion-spinner>
+
+<ion-content padding *ngIf="storeCompleted == true">
   <ion-card text-center>
     <ion-card-header class="text-center">Score Table</ion-card-header>
     <ion-card-content>
@@ -21,7 +23,12 @@
       </ion-list>
     </ion-card-content>
   </ion-card>
-  <ion-item *ngIf="actualPoints.indexOf(null) == -1">
-    <ion-button (click)="nextRound()">Next Round</ion-button>
+  <ion-item >
+    <ion-button (click)="nextRound()" [disabled]="actualPoints.indexOf(null) != -1">{{buttonText}}</ion-button>
   </ion-item>
+
 </ion-content>
+
+<ion-footer>
+    <ion-button (click)="clearGame()">Reset Game</ion-button>
+</ion-footer>

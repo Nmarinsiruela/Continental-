@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
 
-import { Platform } from '@ionic/angular';
+import { Platform, NavController } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
+import { PlayerService } from './helpers/PlayerService';
+import { AppConstants } from './helpers/Constants';
 
 @Component({
   selector: 'app-root',
@@ -25,7 +27,9 @@ export class AppComponent {
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
-    private statusBar: StatusBar
+    private statusBar: StatusBar,
+    private pService: PlayerService,
+    private navCtrl: NavController
   ) {
     this.initializeApp();
   }
@@ -34,6 +38,15 @@ export class AppComponent {
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
+      this.checkStorage();
     });
+
+  }
+
+  async checkStorage() {
+    const players = await this.pService.getStoredPlayers();
+    if (players.length > 0) {
+      this.navCtrl.navigateForward(AppConstants.GAME_URL);
+    }
   }
 }

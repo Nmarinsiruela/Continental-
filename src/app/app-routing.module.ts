@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-
+import { AppConstants } from './helpers/Constants';
+import { StoredUsersGuard } from './helpers/StoredUsersGuard';
 const routes: Routes = [
   {
     path: '',
@@ -16,8 +17,9 @@ const routes: Routes = [
     loadChildren: './list/list.module#ListPageModule'
   },
   {
-    path: 'game',
-    loadChildren: './game/game.module#GamePageModule'
+    path: AppConstants.GAME_URL,
+    loadChildren: './game/game.module#GamePageModule',
+    canActivate: [StoredUsersGuard]
   }
 ];
 
