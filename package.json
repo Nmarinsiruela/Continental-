@@ -26,6 +26,7 @@
     "@ionic/angular": "4.0.0-beta.16",
     "@ionic/pro": "2.0.3",
     "@ionic/storage": "^2.2.0",
+    "cordova-plugin-ionic": "5.2.9",
     "cordova-sqlite-storage": "2.5.2",
     "core-js": "^2.5.4",
     "rxjs": "~6.3.3",
@@ -60,7 +61,13 @@
   "description": "An Ionic project",
   "cordova": {
     "plugins": {
-      "cordova-sqlite-storage": {}
+      "cordova-sqlite-storage": {},
+      "cordova-plugin-ionic": {
+        "APP_ID": "c34353fe",
+        "CHANNEL_NAME": "Continental-Ionic",
+        "UPDATE_METHOD": "background|auto|none",
+        "MAX_STORE": "3"
+      }
     }
   }
 }
