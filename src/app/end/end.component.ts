@@ -16,15 +16,16 @@ export class EndComponent implements OnInit {
   }
 
   async ngOnInit() {
-    this.players = await this.pService.getStoredPlayers();
+    this.players = this.pService.getEndPlayers();
   }
 
   repeatGame() {
     this.pService.clearPlayersScore();
-    this.pService.navigatePage(AppConstants.HOME_URL);
+    this.pService.navigatePage(AppConstants.GAME_URL);
   }
 
   newGame() {
     this.pService.clearStorage();
+    this.pService.navigatePage(AppConstants.HOME_URL);
   }
 }

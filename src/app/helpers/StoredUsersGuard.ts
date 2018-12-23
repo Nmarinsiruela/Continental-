@@ -16,7 +16,7 @@ export class StoredUsersGuard implements CanActivate {
 
   async checkStorage() {
     const players = await this.pService.getStoredPlayers();
-    if (players.length > 0) {
+    if (players.getValue().length > 0) {
       return true;
     }
     this.pService.navigatePage(AppConstants.HOME_URL);

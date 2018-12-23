@@ -45,7 +45,7 @@ export class AppComponent {
 
   async checkStorage() {
     const players = await this.pService.getStoredPlayers();
-    if (players.length > 0) {
+    if (players.getValue().length > 0) {
       this.navCtrl.navigateForward(AppConstants.GAME_URL);
     }
   }

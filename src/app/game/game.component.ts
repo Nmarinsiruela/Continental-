@@ -1,8 +1,8 @@
-import { Component, OnInit, DoCheck } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Player } from '../helpers/Player';
 import { PlayerService } from '../helpers/PlayerService';
 import { AppConstants } from '../helpers/Constants';
-
+import { BehaviorSubject } from 'rxjs';
 @Component({
   selector: 'app-game',
   templateUrl: './game.component.html',
@@ -10,26 +10,35 @@ import { AppConstants } from '../helpers/Constants';
 })
 export class GameComponent implements OnInit {
   actualRound: number;
+  bPlayers = new BehaviorSubject(Array<Player>());
+  bRound = new BehaviorSubject(0);
   players: Array<Player>;
   actualPoints: Array<number>;
   roundCompleted: boolean;
   buttonText: string;
   roundText: string;
-  storeCompleted: boolean;
   constructor(private pService: PlayerService) {
     this.actualPoints = [];
-    this.storeCompleted = false;
   }
 
   async ngOnInit() {
-    this.players = await this.pService.getStoredPlayers();
-    this.actualRound = await this.pService.getStoredRound();
+    this.bPlayers = await this.pService.getStoredPlayers();
+    this.bRound = await this.pService.getStoredRound();
+    this.players = this.bPlayers.getValue();
+    this.actualRound = this.bRound.getValue();
     for (let x = 0; x < this.players.length; x++) {
       this.actualPoints.push(null);
     }
     this.roundText = AppConstants.GET_ROUND_TEXT(this.actualRound);
     this.setButtonText();
-    this.storeCompleted = true;
+  }
+
+  setButtonText() {
+    if (this.actualRound === AppConstants.END_GAME) {
+      this.buttonText = AppConstants.BUTTON_TEXT_END;
+    } else {
+      this.buttonText = AppConstants.BUTTON_TEXT_BASE;
+    }
   }
 
   nextRound() {
@@ -52,21 +61,19 @@ export class GameComponent implements OnInit {
   }
 
   endGame() {
-    this.pService.getEndPlayers();
+    for (let x = 0; x < this.players.length; x++) {
+      this.actualPoints.push(null);
+    }
     this.pService.navigatePage(AppConstants.END_URL);
+    this.actualRound = 0;
+    this.roundText = AppConstants.GET_ROUND_TEXT(this.actualRound);
   }
 
-  setButtonText() {
-    if (this.actualRound === AppConstants.END_GAME) {
-      this.buttonText = AppConstants.BUTTON_TEXT_END;
-    } else {
-      this.buttonText = AppConstants.BUTTON_TEXT_BASE;
-    }
-  }
 
   clearGame() {
     this.pService.clearStorage();
-    this.players = [];
-    this.actualRound = 0;
+    // this.actualRound = 0;
+    // this.actualPoints = [];
+    // this.roundText = AppConstants.GET_ROUND_TEXT(this.actualRound);
   }
 }

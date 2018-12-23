@@ -7,7 +7,7 @@ import { AppConstants } from '../helpers/Constants';
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
 })
-export class HomePage implements OnInit {
+export class HomePage {
   newPlayer: string;
   players: Array<Player>;
   constructor(private pService: PlayerService) {
@@ -15,9 +15,6 @@ export class HomePage implements OnInit {
     this.players = [];
   }
 
-  async ngOnInit() {
-    this.players = await this.pService.getStoredPlayers();
-  }
   setNewPlayer(name) {
     this.players = this.pService.setNewPlayer(name);
     this.newPlayer = '';
