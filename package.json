@@ -64,8 +64,8 @@
       "cordova-sqlite-storage": {},
       "cordova-plugin-ionic": {
         "APP_ID": "c34353fe",
-        "CHANNEL_NAME": "Continental-Ionic",
-        "UPDATE_METHOD": "background|auto|none",
+        "CHANNEL_NAME": "Master",
+        "UPDATE_METHOD": "background",
         "MAX_STORE": "3"
       }
     }
