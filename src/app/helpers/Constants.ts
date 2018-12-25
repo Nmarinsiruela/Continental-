@@ -6,10 +6,10 @@ export class AppConstants {
     return 6;
   }
   public static get BUTTON_TEXT_BASE(): string {
-    return 'Next Round';
+    return 'Siguiente Ronda';
   }
   public static get BUTTON_TEXT_END(): string {
-    return 'End Game';
+    return 'Fin del Juego';
   }
   public static get ROUNDS(): string {
     return 'rounds';
@@ -30,19 +30,19 @@ export class AppConstants {
   public static GET_ROUND_TEXT(value): string {
     switch (value) {
       case 0:
-        return 'Dos Tríos';
+        return '2 Tríos';
       case 1:
-        return 'Un Trío y una Escalera';
+        return '1 Trío y 1 Escalera';
       case 2:
-        return 'Dos Escaleras';
+        return '2 Escaleras';
       case 3:
-        return 'Tres Tríos';
+        return '3 Tríos';
       case 4:
-        return 'Dos Tríos y una Escalera';
+        return '2 Tríos y 1 Escalera';
       case 5:
-        return 'Dos Escaleras y un Trío';
+        return '2 Escaleras y 1 Trío';
       case 6:
-        return 'Tres Escaleras';
+        return '3 Escaleras';
     }
   }
 }

@@ -38,7 +38,6 @@ export class PlayerService {
   }
 
   setNewGame() {
-    console.table(this.getPlayers());
     this.storage.set(AppConstants.PLAYERS, JSON.stringify(this.getPlayers()));
     this.storage.set(AppConstants.ROUNDS, AppConstants.STARTER_ROUND);
   }
@@ -94,6 +93,7 @@ export class PlayerService {
     for (let x = 0; x < this.getPlayers().length; x++) {
       this.getPlayers()[x].count = 0;
     }
+    console.table(this.endPlayers);
     this.setNewGame();
   }
   getEndPlayers() {

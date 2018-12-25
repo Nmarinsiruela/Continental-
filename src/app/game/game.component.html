@@ -4,30 +4,35 @@
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
     <ion-title name="bubbles">
-      Round {{actualRound}}
+      Ronda {{actualRound >= 0 ? actualRound: null}}
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-label text-center >{{roundText}}</ion-label>
 <ion-content padding>
+  <ion-row>
+    <ion-col text-center>
+      <ion-button (click)="nextRound()" [disabled]="actualPoints.indexOf(null) != -1">{{buttonText}}</ion-button>
+    </ion-col>
+  </ion-row>
   <ion-card text-center>
-    <ion-card-header class="text-center">Score Table</ion-card-header>
+    <ion-card-header class="text-center">{{roundText}}</ion-card-header>
     <ion-card-content>
       <ion-list>
-        <ion-item *ngFor="let player of players; let i = index">
-          <ion-label color="primary" floating>{{player.name}} - Points: {{player.count}}</ion-label>
-          <ion-input type="number" [(ngModel)]="actualPoints[i]"></ion-input>
+        <ion-item class="text-center" *ngFor="let player of players; let i = index">
+          <ion-label color="primary" floating>{{player.name}}</ion-label>
+          <ion-input type="number" [(ngModel)]="actualPoints[i]" placeholder="Puntuación: {{player.count}}"></ion-input>
         </ion-item>
       </ion-list>
     </ion-card-content>
   </ion-card>
-  <ion-item >
-    <ion-button (click)="nextRound()" [disabled]="actualPoints.indexOf(null) != -1">{{buttonText}}</ion-button>
-  </ion-item>
-
 </ion-content>
 
 <ion-footer>
-    <ion-button (click)="clearGame()">Reset Game</ion-button>
+  <ion-row>
+    <ion-col text-center>
+      <ion-button (click)="clearGame()">Reset</ion-button>
+    </ion-col>
+  </ion-row>
+
 </ion-footer>

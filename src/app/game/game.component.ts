@@ -8,7 +8,7 @@ import { BehaviorSubject } from 'rxjs';
   templateUrl: './game.component.html',
   styleUrls: ['./game.component.scss']
 })
-export class GameComponent implements OnInit {
+export class GameComponent {
   actualRound: number;
   bPlayers = new BehaviorSubject(Array<Player>());
   bRound = new BehaviorSubject(0);
@@ -21,11 +21,12 @@ export class GameComponent implements OnInit {
     this.actualPoints = [];
   }
 
-  async ngOnInit() {
+  async ionViewWillEnter() {
     this.bPlayers = await this.pService.getStoredPlayers();
     this.bRound = await this.pService.getStoredRound();
     this.players = this.bPlayers.getValue();
     this.actualRound = this.bRound.getValue();
+    this.actualPoints = [];
     for (let x = 0; x < this.players.length; x++) {
       this.actualPoints.push(null);
     }
@@ -61,19 +62,11 @@ export class GameComponent implements OnInit {
   }
 
   endGame() {
-    for (let x = 0; x < this.players.length; x++) {
-      this.actualPoints.push(null);
-    }
     this.pService.navigatePage(AppConstants.END_URL);
-    this.actualRound = 0;
-    this.roundText = AppConstants.GET_ROUND_TEXT(this.actualRound);
   }
 
 
   clearGame() {
     this.pService.clearStorage();
-    // this.actualRound = 0;
-    // this.actualPoints = [];
-    // this.roundText = AppConstants.GET_ROUND_TEXT(this.actualRound);
   }
 }

@@ -4,7 +4,7 @@
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
     <ion-title>
-      Player Selection
+      Selección de Jugadores
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -13,30 +13,38 @@
   <ion-card text-center>
     <ion-card-content>
       <ion-item>
-        <ion-input type="text" [(ngModel)]="newPlayer" placeholder="From 2 to 8 players!"></ion-input>
+        <ion-input type="text" autocapitalize="on" [(ngModel)]="newPlayer" placeholder="¡De 2 a 8 jugadores!"></ion-input>
       </ion-item>
-      <ion-item>
-        <ion-button block (click)="setNewPlayer(newPlayer)" [disabled]="players.length > 7">
-          Add Player
-        </ion-button>
-      </ion-item>
+        <ion-row>
+          <ion-col text-center>
+            <ion-button fill="outline" (click)="setNewPlayer(newPlayer)" [disabled]="players.length > 7">
+              Añadir Jugador
+            </ion-button>
+          </ion-col>
+        </ion-row>
     </ion-card-content>
 
   </ion-card>
   <ion-card text-center *ngIf="players.length > 0">
-    <ion-card-header class="text-center">List of Players</ion-card-header>
+    <ion-card-header class="text-center">Lista de Jugadores</ion-card-header>
     <ion-card-content>
       <ion-list>
         <ion-item *ngFor="let player of players; let i = index">
-          <ion-label item-start>Player {{i+1}}: {{player.name}}</ion-label>
-          <ion-button danger item-end (click)="removePlayer(player)">
-            <ion-icon name="trash"></ion-icon>
-          </ion-button>
+          <ion-label item-start>J{{i+1}}: {{player.name}}</ion-label>
+          <ion-row>
+            <ion-col text-center>
+              <ion-button danger item-end (click)="removePlayer(player)">
+                <ion-icon name="trash"></ion-icon>
+              </ion-button>
+            </ion-col>
+          </ion-row>
         </ion-item>
       </ion-list>
     </ion-card-content>
   </ion-card>
-  <ion-item *ngIf="players.length > 1">
-    <ion-button (click)="setPlayers()">Start Game</ion-button>
-  </ion-item>
+    <ion-row *ngIf="players.length > 1">
+      <ion-col text-center>
+        <ion-button (click)="setPlayers()">Empezar</ion-button>
+      </ion-col>
+    </ion-row>
 </ion-content>
