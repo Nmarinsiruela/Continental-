@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Player } from '../helpers/Player';
 import { PlayerService } from '../helpers/PlayerService';
 import { AppConstants } from '../helpers/Constants';
@@ -46,10 +46,7 @@ export class GameComponent {
     this.pService.setNewRound(this.actualPoints);
     const newRound = this.pService.getRound();
 
-    // if (this.actualRound === AppConstants.END_GAME + 1) {
-    //   this.endGame();
-    // }
-    if (newRound === 2) {
+    if (newRound === AppConstants.END_GAME + 1) {
       this.endGame();
     } else {
       this.actualRound = newRound;

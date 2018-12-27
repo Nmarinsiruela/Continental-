@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { PlayerService } from '../helpers/PlayerService';
 import { Player } from '../helpers/Player';
 import { AppConstants } from '../helpers/Constants';
@@ -10,14 +10,21 @@ import { AppConstants } from '../helpers/Constants';
 export class HomePage {
   newPlayer: string;
   players: Array<Player>;
+  maximumPlayers: boolean;
   constructor(private pService: PlayerService) {
     this.newPlayer = '';
     this.players = [];
+    this.maximumPlayers = false;
   }
 
   setNewPlayer(name) {
-    this.players = this.pService.setNewPlayer(name);
-    this.newPlayer = '';
+    if (this.players.length <= 7) {
+      this.maximumPlayers = false;
+      this.players = this.pService.setNewPlayer(name);
+      this.newPlayer = '';
+    } else {
+      this.maximumPlayers = true;
+    }
   }
 
   removePlayer(player) {

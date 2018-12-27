@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Player } from '../helpers/Player';
 import { PlayerService } from '../helpers/PlayerService';
 import { AppConstants } from '../helpers/Constants';
@@ -8,14 +8,14 @@ import { AppConstants } from '../helpers/Constants';
   templateUrl: './end.component.html',
   styleUrls: ['./end.component.scss']
 })
-export class EndComponent implements OnInit {
+export class EndComponent {
   players: Array<Player>;
   color: Array<string>;
   constructor(private pService: PlayerService) {
-    this.color = ['primary', 'secondary', 'danger'];
+    this.color = ['warning', 'medium', 'bronze'];
   }
 
-  async ngOnInit() {
+  ionViewWillEnter() {
     this.players = this.pService.getEndPlayers();
   }
 
