@@ -17,6 +17,22 @@ export class HomePage {
     this.maximumPlayers = false;
   }
 
+  ionViewWillEnter() {
+    this.pService.getStoredPlayers().then((players) => {
+      this.pService.getStoredRound().then((round) => {
+        if (players.getValue().length > 0) {
+          if (round.getValue() < 7) {
+            this.pService.navigatePage(AppConstants.GAME_URL);
+          } else if (round.getValue() === 7) {
+            this.pService.navigatePage(AppConstants.END_URL);
+          } else {
+            console.log ('Error:', players, round);
+          }
+        }
+      });
+  });
+  }
+
   setNewPlayer(name) {
     if (this.players.length <= 7) {
       this.maximumPlayers = false;

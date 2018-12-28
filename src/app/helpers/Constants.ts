@@ -1,8 +1,3 @@
-// import { Injectable } from '@angular/core';
-
-// @Injectable({
-//   providedIn: 'root'
-// })
 export const AppConstants  = {
   get STARTER_ROUND(): number {
     return 0;
@@ -50,4 +45,4 @@ export const AppConstants  = {
         return '3 Escaleras';
     }
   }
-}
+};

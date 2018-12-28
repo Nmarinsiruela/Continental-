@@ -38,22 +38,7 @@ export class AppComponent {
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
-      this.checkStorage();
     });
 
-  }
-
-  async checkStorage() {
-    const players = await this.pService.getStoredPlayers();
-    const round = await this.pService.getStoredRound();
-    if (players.getValue().length > 0) {
-      if (round.getValue() < 7) {
-        this.navCtrl.navigateForward(AppConstants.GAME_URL);
-      } else if (round.getValue() === 7) {
-        this.navCtrl.navigateForward(AppConstants.END_URL);
-      } else {
-        console.log ('Error:', players, round);
-      }
-    }
   }
 }
