@@ -7,11 +7,13 @@ import { BehaviorSubject } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class PlayerService {
+export class SettingService {
   players = new BehaviorSubject(Array<Player>());
   actualRound = new BehaviorSubject(0);
   endPlayers: Array<Player>;
-  constructor(private storage: Storage, private navCtrl: NavController) {}
+  language: string;
+  constructor(private storage: Storage, private navCtrl: NavController) {
+  }
 
   getPlayers() {
     return this.players.getValue();
@@ -56,6 +58,13 @@ export class PlayerService {
     return this.getFromStorageAsync(AppConstants.ROUNDS).then(actualRound => {
       this.actualRound = new BehaviorSubject(+actualRound);
       return this.actualRound;
+    });
+  }
+
+  async getStoredLanguage() {
+    return this.getFromStorageAsync(AppConstants.LANG).then(language => {
+      this.language = language !== null ? language : AppConstants.ENGLISH_LANG;
+      return this.language;
     });
   }
 
@@ -109,5 +118,17 @@ export class PlayerService {
   });
 
   return this.endPlayers.slice(0, 3);
+  }
+
+
+  // OPTIONS METHODS
+
+  setLanguage(option: string) {
+    this.language = option;
+    this.storage.set(AppConstants.LANG, this.language);
+  }
+
+  getLanguage() {
+    return this.language;
   }
 }

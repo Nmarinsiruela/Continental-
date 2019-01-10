@@ -3,8 +3,8 @@ import { Component } from '@angular/core';
 import { Platform, NavController } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
-import { PlayerService } from './helpers/PlayerService';
-import { AppConstants } from './helpers/Constants';
+import {TranslateService} from '@ngx-translate/core';
+import { SettingService } from './helpers/settings.service';
 
 @Component({
   selector: 'app-root',
@@ -13,12 +13,12 @@ import { AppConstants } from './helpers/Constants';
 export class AppComponent {
   public appPages = [
     {
-      title: 'Continental++',
+      title: 'GAME',
       url: '/home',
       icon: 'home'
     },
     {
-      title: 'List',
+      title: 'OPTIONS',
       url: '/list',
       icon: 'list'
     }
@@ -28,10 +28,13 @@ export class AppComponent {
     private platform: Platform,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
-    private pService: PlayerService,
-    private navCtrl: NavController
+    private translate: TranslateService,
+    private service: SettingService
   ) {
     this.initializeApp();
+    this.service.getStoredLanguage().then((language) => {
+      this.translate.use(language);
+    });
   }
 
   initializeApp() {

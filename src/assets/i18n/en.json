@@ -1,0 +1,28 @@
+{
+	"INTRO": "From 2 to 8 players!",
+	"NEW_PLAYER" : "New Player",
+    "LIMIT" : "Limit: 8 players!",
+    "PLAYERS": "Players",
+    "PLA": "P",
+    "START": "Start",
+    "NEXTROUND": "Next Round",
+    "GAMEOVER": "End Game",
+    "ROUND": "Round",
+    "ROUND1": "2 Three of a Kind",
+    "ROUND2": " 1 Three of a Kind and 1 Straight Flush",
+    "ROUND3": "2 Straight Flushes",
+    "ROUND4": "3 Three of a Kind",
+    "ROUND5": "2 Three of a Kind and 1 Straight Flush",
+    "ROUND6": "2 Straight Flushes and 1 Three of a Kind",
+    "ROUND7": "3 Straight Flushes",
+    "LANGUAGE": "Language",
+    "OPTIONS": "Options",
+    "SPANISH": "Spanish",
+    "ENGLISH": "English",
+    "GAME": "Game",
+    "RESULTS": "Results",
+    "FINALSCORE": "Final Score",
+    "RESTART": "Replay",
+    "NEWGAME": "New Game"
+    
+}

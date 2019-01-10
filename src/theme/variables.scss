@@ -82,4 +82,24 @@
   --ion-color-bronze-contrast-rgb: 0, 0, 0;
   --ion-color-bronze-shade: #b99211;
   --ion-color-bronze-tint: #b99211;
+
+  @font-face {
+    font-family: ActorFont;
+    src: url("../assets/fonts/Actor-Regular.ttf");
+  }
+
+  @font-face {
+    font-family: AmaranthFont;
+    text-transform: capitalize;
+    src: url("../assets/fonts/Amaranth-Bold.ttf");
+  }
+
+}
+
+ion-button {
+  font-family: AmaranthFont;
+}
+
+ion-label, ion-text, ion-card-header, ion-title {
+  font-family: ActorFont;
 }

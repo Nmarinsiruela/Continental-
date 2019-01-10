@@ -4,7 +4,7 @@
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
     <ion-title text-center name="bubbles">
-      Ronda {{actualRound >= 0 ? actualRound: null}}
+      {{'ROUND' | translate}} {{actualRound >= 0 ? actualRound: null}}
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -15,7 +15,7 @@
         <ion-button (click)="clearGame()">Reset</ion-button>
       </ion-col></ion-row>
   <ion-card text-center>
-    <ion-card-header class="text-center title-card-sized">{{roundText}}</ion-card-header>
+    <ion-card-header class="text-center title-card-sized">{{roundText | translate}}</ion-card-header>
     <ion-card-content>
       <ion-list>
         <ion-item class="text-center" *ngFor="let player of players; let i = index">
@@ -31,7 +31,7 @@
 
   <ion-row>
     <ion-col text-center>
-      <ion-button (click)="nextRound()" [disabled]="actualPoints.indexOf(null) != -1">{{buttonText}}</ion-button>
+      <ion-button (click)="nextRound()" [disabled]="actualPoints.indexOf(null) != -1">{{buttonText | translate}}</ion-button>
     </ion-col>
   </ion-row>
 </ion-footer>

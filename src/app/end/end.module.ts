@@ -5,6 +5,7 @@ import { IonicModule } from '@ionic/angular';
 import { RouterModule } from '@angular/router';
 
 import { EndComponent } from './end.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   imports: [
@@ -16,7 +17,8 @@ import { EndComponent } from './end.component';
         path: '',
         component: EndComponent
       }
-    ])
+    ]),
+    TranslateModule
   ],
   declarations: [EndComponent]
 })

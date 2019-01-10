@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { Player } from '../helpers/Player';
-import { PlayerService } from '../helpers/PlayerService';
+import { SettingService } from '../helpers/settings.service';
 import { AppConstants } from '../helpers/Constants';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-end',
@@ -11,21 +12,25 @@ import { AppConstants } from '../helpers/Constants';
 export class EndComponent {
   players: Array<Player>;
   color: Array<string>;
-  constructor(private pService: PlayerService) {
+  constructor(private service: SettingService,
+    private translate: TranslateService) {
     this.color = ['warning', 'medium', 'bronze'];
   }
 
   ionViewWillEnter() {
-    this.players = this.pService.getEndPlayers();
+    this.service.getStoredLanguage().then((language) => {
+      this.translate.use(language);
+    });
+    this.players = this.service.getEndPlayers();
   }
 
   repeatGame() {
-    this.pService.clearPlayersScore();
-    this.pService.navigatePage(AppConstants.GAME_URL);
+    this.service.clearPlayersScore();
+    this.service.navigatePage(AppConstants.GAME_URL);
   }
 
   newGame() {
-    this.pService.clearStorage();
-    this.pService.navigatePage(AppConstants.HOME_URL);
+    this.service.clearStorage();
+    this.service.navigatePage(AppConstants.HOME_URL);
   }
 }

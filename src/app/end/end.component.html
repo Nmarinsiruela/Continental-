@@ -4,7 +4,7 @@
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
     <ion-title>
-      Resultados
+      {{'RESULTS' | translate}}
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -12,7 +12,7 @@
 
 <ion-content >
   <ion-card text-center>
-    <ion-card-header class="text-center title-card-sized">Tabla Final</ion-card-header>
+    <ion-card-header class="text-center title-card-sized">{{'FINALSCORE' | translate}}</ion-card-header>
     <ion-card-content>
       <ion-list>
         <ion-item *ngFor="let player of players; let i = index">
@@ -25,7 +25,7 @@
 
   <ion-row>
     <ion-col text-center>
-      <ion-button (click)="repeatGame()">Repetir Partida</ion-button>
+      <ion-button (click)="repeatGame()">{{'RESTART' | translate}}</ion-button>
     </ion-col>
   </ion-row>
 </ion-content>
@@ -33,7 +33,7 @@
 <ion-footer>
   <ion-row>
     <ion-col text-center>
-      <ion-button (click)="newGame()">Nuevo Juego</ion-button>
+      <ion-button (click)="newGame()">{{'NEWGAME' | translate}}</ion-button>
     </ion-col>
   </ion-row>
 </ion-footer>

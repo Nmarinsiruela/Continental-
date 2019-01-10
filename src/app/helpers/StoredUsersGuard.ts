@@ -1,4 +1,4 @@
-import { PlayerService } from './PlayerService';
+import { SettingService } from './settings.service';
 import { AppConstants } from './Constants';
 import { Injectable } from '@angular/core';
 
@@ -8,18 +8,18 @@ import { CanActivate } from '@angular/router';
     providedIn: 'root',
   })
 export class StoredUsersGuard implements CanActivate {
-  constructor(private pService: PlayerService) {}
+  constructor(private service: SettingService) {}
 
   canActivate() {
     return this.checkStorage();
   }
 
   async checkStorage() {
-    const players = await this.pService.getStoredPlayers();
+    const players = await this.service.getStoredPlayers();
     if (players.getValue().length > 0) {
       return true;
     }
-    this.pService.navigatePage(AppConstants.HOME_URL);
+    this.service.navigatePage(AppConstants.HOME_URL);
     return false;
   }
 }

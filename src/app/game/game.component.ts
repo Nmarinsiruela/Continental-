@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
 import { Player } from '../helpers/Player';
-import { PlayerService } from '../helpers/PlayerService';
+import { SettingService } from '../helpers/settings.service';
 import { AppConstants } from '../helpers/Constants';
 import { BehaviorSubject } from 'rxjs';
+import {TranslateService} from '@ngx-translate/core';
+
 @Component({
   selector: 'app-game',
   templateUrl: './game.component.html',
@@ -17,13 +19,17 @@ export class GameComponent {
   roundCompleted: boolean;
   buttonText: string;
   roundText: string;
-  constructor(private pService: PlayerService) {
+  constructor(private service: SettingService,
+              private translate: TranslateService) {
     this.actualPoints = [];
   }
 
   async ionViewWillEnter() {
-    this.bPlayers = await this.pService.getStoredPlayers();
-    this.bRound = await this.pService.getStoredRound();
+    this.service.getStoredLanguage().then((language) => {
+      this.translate.use(language);
+    });
+    this.bPlayers = await this.service.getStoredPlayers();
+    this.bRound = await this.service.getStoredRound();
     this.players = this.bPlayers.getValue();
     this.actualRound = this.bRound.getValue();
     this.actualPoints = [];
@@ -43,8 +49,8 @@ export class GameComponent {
   }
 
   nextRound() {
-    this.pService.setNewRound(this.actualPoints);
-    const newRound = this.pService.getRound();
+    this.service.setNewRound(this.actualPoints);
+    const newRound = this.service.getRound();
 
     if (newRound === AppConstants.END_GAME + 1) {
       this.endGame();
@@ -59,11 +65,11 @@ export class GameComponent {
   }
 
   endGame() {
-    this.pService.navigatePage(AppConstants.END_URL);
+    this.service.navigatePage(AppConstants.END_URL);
   }
 
 
   clearGame() {
-    this.pService.clearStorage();
+    this.service.clearStorage();
   }
 }

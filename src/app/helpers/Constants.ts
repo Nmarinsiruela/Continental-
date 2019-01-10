@@ -6,16 +6,19 @@ export const AppConstants  = {
     return 6;
   },
   get BUTTON_TEXT_BASE(): string {
-    return 'Siguiente Ronda';
+    return 'NEXTROUND';
   },
   get BUTTON_TEXT_END(): string {
-    return 'Fin del Juego';
+    return 'GAMEOVER';
   },
   get ROUNDS(): string {
     return 'rounds';
   },
   get PLAYERS(): string {
     return 'players';
+  },
+  get LANG(): string {
+    return 'language';
   },
   get GAME_URL(): string {
     return 'game';
@@ -27,22 +30,30 @@ export const AppConstants  = {
     return 'end';
   },
 
+  get SPANISH_LANG(): string {
+    return 'es';
+  },
+
+  get ENGLISH_LANG(): string {
+    return 'en';
+  },
+
   GET_ROUND_TEXT(value): string {
     switch (value) {
       case 0:
-        return '2 Tríos';
+        return 'ROUND1';
       case 1:
-        return '1 Trío y 1 Escalera';
+        return 'ROUND2';
       case 2:
-        return '2 Escaleras';
+        return 'ROUND3';
       case 3:
-        return '3 Tríos';
+        return 'ROUND4';
       case 4:
-        return '2 Tríos y 1 Escalera';
+        return 'ROUND5';
       case 5:
-        return '2 Escaleras y 1 Trío';
+        return 'ROUND6';
       case 6:
-        return '3 Escaleras';
+        return 'ROUND7';
     }
   }
 };

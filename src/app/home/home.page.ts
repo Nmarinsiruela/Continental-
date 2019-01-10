@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
-import { PlayerService } from '../helpers/PlayerService';
+import { SettingService } from '../helpers/settings.service';
 import { Player } from '../helpers/Player';
 import { AppConstants } from '../helpers/Constants';
+import {TranslateService} from '@ngx-translate/core';
+
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
@@ -11,20 +13,24 @@ export class HomePage {
   newPlayer: string;
   players: Array<Player>;
   maximumPlayers: boolean;
-  constructor(private pService: PlayerService) {
+  constructor(private service: SettingService, private translate: TranslateService) {
     this.newPlayer = '';
     this.players = [];
     this.maximumPlayers = false;
+
   }
 
   ionViewWillEnter() {
-    this.pService.getStoredPlayers().then((players) => {
-      this.pService.getStoredRound().then((round) => {
+    this.service.getStoredLanguage().then((language) => {
+      this.translate.use(language);
+    });
+    this.service.getStoredPlayers().then((players) => {
+      this.service.getStoredRound().then((round) => {
         if (players.getValue().length > 0) {
           if (round.getValue() < 7) {
-            this.pService.navigatePage(AppConstants.GAME_URL);
+            this.service.navigatePage(AppConstants.GAME_URL);
           } else if (round.getValue() === 7) {
-            this.pService.navigatePage(AppConstants.END_URL);
+            this.service.navigatePage(AppConstants.END_URL);
           } else {
             console.log ('Error:', players, round);
           }
@@ -36,7 +42,7 @@ export class HomePage {
   setNewPlayer(name) {
     if (this.players.length <= 7) {
       this.maximumPlayers = false;
-      this.players = this.pService.setNewPlayer(name);
+      this.players = this.service.setNewPlayer(name);
       this.newPlayer = '';
     } else {
       this.maximumPlayers = true;
@@ -44,13 +50,12 @@ export class HomePage {
   }
 
   removePlayer(player) {
-    this.pService.removePlayer(player);
+    this.service.removePlayer(player);
   }
 
   setPlayers() {
-    this.pService.setNewGame();
-    this.pService.navigatePage(AppConstants.GAME_URL);
+    this.service.setNewGame();
+    this.service.navigatePage(AppConstants.GAME_URL);
     this.players = [];
   }
-
 }

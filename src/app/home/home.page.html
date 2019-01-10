@@ -1,9 +1,10 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button>
+      <ion-menu-button>
+      </ion-menu-button>
     </ion-buttons>
-    <ion-title>
+    <ion-title text-center>
       Continental++
     </ion-title>
   </ion-toolbar>
@@ -11,24 +12,24 @@
 
 <ion-content padding>
   <ion-card text-center>
-      <ion-card-header class="text-center title-card-sized">¡De 2 a 8 jugadores!</ion-card-header>
+      <ion-card-header class="text-center title-card-sized" style="font-family: ActorFont">{{ 'INTRO' | translate }}</ion-card-header>
     <ion-card-content>
       <ion-item>
         <ion-input  type="text" class="text-input" autocapitalize="on" [(ngModel)]="newPlayer"
-                    (keyup.enter)="setNewPlayer(newPlayer)" placeholder="Nuevo Jugador">
+                    (keyup.enter)="setNewPlayer(newPlayer)" placeholder="{{ 'NEW_PLAYER' | translate }}">
         </ion-input>
       </ion-item>
       <ion-item *ngIf="maximumPlayers == true">
-        <ion-text>Límite: 8 jugadores!</ion-text>
+        <ion-text>{{ 'LIMIT' | translate }}</ion-text>
       </ion-item>
     </ion-card-content>
   </ion-card>
   <ion-card text-center *ngIf="players.length > 0">
-    <ion-card-header class="text-center">Jugadores</ion-card-header>
+    <ion-card-header class="text-center">{{ 'PLAYERS' | translate }}</ion-card-header>
     <ion-card-content>
       <ion-list>
         <ion-item *ngFor="let player of players; let i = index">
-          <ion-label item-start>J{{i+1}}: {{player.name}}</ion-label>
+          <ion-label item-start>{{ 'PLA' | translate }}{{i+1}}: {{player.name}}</ion-label>
           <ion-row>
             <ion-col text-center>
               <ion-button danger item-end (click)="removePlayer(player)">
@@ -42,7 +43,7 @@
   </ion-card>
     <ion-row *ngIf="players.length > 1">
       <ion-col text-center>
-        <ion-button (click)="setPlayers()">Empezar</ion-button>
+        <ion-button (click)="setPlayers()">{{ 'START' | translate }}</ion-button>
       </ion-col>
     </ion-row>
 </ion-content>

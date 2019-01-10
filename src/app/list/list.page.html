@@ -4,24 +4,17 @@
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
     <ion-title>
-      List
+      {{'OPTIONS' | translate}}
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-list>
-    <ion-item *ngFor="let item of items">
-      <ion-icon [name]="item.icon" slot="start"></ion-icon>
-      {{item.title}}
-      <div class="item-note" slot="end">
-        {{item.note}}
-      </div>
+  <ion-item>
+      <ion-label>{{'LANGUAGE' | translate}}</ion-label>
+      <ion-select [(ngModel)]="langSelected" interface="popover" (ionChange)="selectLanguage(langSelected)">
+        <ion-select-option value="en">{{'ENGLISH' | translate}}</ion-select-option>
+        <ion-select-option value="es">{{'SPANISH' | translate}}</ion-select-option>
+      </ion-select>
     </ion-item>
-  </ion-list>
-  <!--
-    <div *ngIf="selectedItem" padding>
-      You navigated here from <b>{{selectedItem.title }}</b>
-    </div>
-  -->
 </ion-content>
