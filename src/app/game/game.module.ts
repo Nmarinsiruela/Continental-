@@ -18,7 +18,7 @@ import { GameComponent } from './game.component';
         component: GameComponent
       }
     ]),
-    TranslateModule
+    TranslateModule.forChild()
   ],
   declarations: [GameComponent]
 })

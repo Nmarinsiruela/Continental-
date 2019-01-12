@@ -17,13 +17,11 @@ export class EndComponent {
   ) {
   }
 
-  async ionViewWillEnter() {
-    this.service.getStoredLanguage().then(language => {
-      this.translate.use(language);
+  ionViewWillEnter() {
+    this.service.getStoredPlayers().then((storedPlayers) => {
+      const players = storedPlayers.getValue();
+      this.players = this.service.getEndPlayers(players);
     });
-    const bPlayers = await this.service.getStoredPlayers();
-    const players = bPlayers.getValue();
-    this.players = this.service.getEndPlayers(players);
   }
 
   repeatGame() {

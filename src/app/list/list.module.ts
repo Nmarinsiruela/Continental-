@@ -5,7 +5,10 @@ import { IonicModule } from '@ionic/angular';
 import { RouterModule } from '@angular/router';
 
 import { ListPage } from './list.page';
-import { TranslateModule } from '@ngx-translate/core';
+// Required to change translation language.
+import { HttpClient } from '@angular/common/http';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { createTranslateLoader } from '../../app/app.module';
 
 @NgModule({
   imports: [
@@ -18,7 +21,13 @@ import { TranslateModule } from '@ngx-translate/core';
         component: ListPage
       }
     ]),
-    TranslateModule
+    TranslateModule.forChild({
+      loader: {
+          provide: TranslateLoader,
+          useFactory: createTranslateLoader,
+          deps: [HttpClient]
+      }
+  })
   ],
   declarations: [ListPage]
 })

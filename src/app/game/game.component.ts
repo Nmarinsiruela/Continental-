@@ -12,8 +12,6 @@ import {TranslateService} from '@ngx-translate/core';
 })
 export class GameComponent {
   actualRound: number;
-  bPlayers = new BehaviorSubject(Array<Player>());
-  bRound = new BehaviorSubject(0);
   players: Array<Player>;
   actualPoints: Array<number>;
   roundCompleted: boolean;
@@ -24,20 +22,19 @@ export class GameComponent {
     this.actualPoints = [];
   }
 
-  async ionViewWillEnter() {
-    this.service.getStoredLanguage().then((language) => {
-      this.translate.use(language);
+  ionViewWillEnter() {
+    this.service.getStoredPlayers().then(bPlayers => {
+      this.service.getStoredRound().then(bRound => {
+        this.players = bPlayers.getValue();
+        this.actualRound = bRound.getValue();
+        this.actualPoints = [];
+        for (let x = 0; x < this.players.length; x++) {
+          this.actualPoints.push(null);
+        }
+        this.roundText = AppConstants.GET_ROUND_TEXT(this.actualRound);
+        this.setButtonText();
+      });
     });
-    this.bPlayers = await this.service.getStoredPlayers();
-    this.bRound = await this.service.getStoredRound();
-    this.players = this.bPlayers.getValue();
-    this.actualRound = this.bRound.getValue();
-    this.actualPoints = [];
-    for (let x = 0; x < this.players.length; x++) {
-      this.actualPoints.push(null);
-    }
-    this.roundText = AppConstants.GET_ROUND_TEXT(this.actualRound);
-    this.setButtonText();
   }
 
   setButtonText() {

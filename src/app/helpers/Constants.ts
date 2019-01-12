@@ -21,13 +21,13 @@ export const AppConstants  = {
     return 'language';
   },
   get GAME_URL(): string {
-    return 'game';
+    return '/game';
   },
   get HOME_URL(): string {
-    return 'home';
+    return '/home';
   },
   get END_URL(): string {
-    return 'end';
+    return '/end';
   },
 
   get SPANISH_LANG(): string {

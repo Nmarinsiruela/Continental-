@@ -2,17 +2,17 @@ import { Player } from './Player';
 import { Injectable } from '@angular/core';
 import { Storage } from '@ionic/storage';
 import { AppConstants } from './Constants';
-import { NavController } from '@ionic/angular';
 import { BehaviorSubject } from 'rxjs';
+import { Router } from '@angular/router';
 @Injectable({
   providedIn: 'root'
 })
 export class SettingService {
-  players = new BehaviorSubject(Array<Player>());
-  actualRound = new BehaviorSubject(0);
-  endPlayers: Array<Player>;
+  private players = new BehaviorSubject(Array<Player>());
+  private actualRound = new BehaviorSubject(0);
+  private endPlayers: Array<Player>;
   language: string;
-  constructor(private storage: Storage, private navCtrl: NavController) {
+  constructor(private storage: Storage, private router: Router) {
   }
 
   getPlayers() {
@@ -81,10 +81,7 @@ export class SettingService {
   }
 
   navigatePage(destiny: string) {
-    if (destiny === AppConstants.HOME_URL) {
-      this.navCtrl.navigateRoot(destiny);
-    }
-    this.navCtrl.navigateForward(destiny);
+    this.router.navigateByUrl(destiny);
   }
 
   setNewRound(newPoints) {
@@ -102,9 +99,9 @@ export class SettingService {
     for (let x = 0; x < this.getPlayers().length; x++) {
       this.getPlayers()[x].count = 0;
     }
-    console.table(this.endPlayers);
     this.setNewGame();
   }
+
   getEndPlayers(players) {
     this.endPlayers = Object.assign([], players);
     this.endPlayers.sort((obj1, obj2) => {

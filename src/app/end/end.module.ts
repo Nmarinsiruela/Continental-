@@ -18,7 +18,7 @@ import { TranslateModule } from '@ngx-translate/core';
         component: EndComponent
       }
     ]),
-    TranslateModule
+    TranslateModule.forChild()
   ],
   declarations: [EndComponent]
 })

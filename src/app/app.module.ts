@@ -24,7 +24,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
     IonicModule.forRoot(),
     AppRoutingModule,
     IonicStorageModule.forRoot({
-      name: '__mydb',
+      name: '__mydbContinental',
       driverOrder: ['indexeddb', 'websql', 'sqlite']
     }),
     TranslateModule.forRoot({

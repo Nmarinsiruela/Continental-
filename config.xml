@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="io.ionic.nmarin" version="0.1.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="io.ionic.nmarin" version="0.6" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>Continental+</name>
     <description>An awesome Ionic/Cordova app to play the card game: Continental</description>
     <author email="nmarinsiruela@gmail.com" href="https://github.com/Nmarinsiruela">Nmarinsiruela</author>
@@ -77,10 +77,10 @@
         <splash height="480" src="resources/ios/splash/Default~iphone.png" width="320" />
         <splash height="2732" src="resources/ios/splash/Default@2x~universal~anyany.png" width="2732" />
     </platform>
-    <plugin name="cordova-plugin-device" spec="2.0.2" />
     <plugin name="cordova-plugin-splashscreen" spec="5.0.2" />
     <plugin name="cordova-plugin-ionic-webview" spec="^2.0.0" />
     <plugin name="cordova-plugin-ionic-keyboard" spec="^2.0.5" />
     <plugin name="cordova-sqlite-storage" spec="2.6.0" />
+    <plugin name="cordova-plugin-device" spec="2.0.2" />
     <engine name="android" spec="7.1.1" />
 </widget>

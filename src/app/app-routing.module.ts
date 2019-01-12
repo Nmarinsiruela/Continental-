@@ -10,19 +10,20 @@ const routes: Routes = [
   },
   {
     path: 'home',
-    loadChildren: './home/home.module#HomePageModule'
+    loadChildren: './home/home.module#HomePageModule',
+    canActivate: [StoredUsersGuard]
   },
   {
     path: 'list',
     loadChildren: './list/list.module#ListPageModule'
   },
   {
-    path: AppConstants.GAME_URL,
+    path: 'game',
     loadChildren: './game/game.module#GamePageModule',
     // canActivate: [StoredUsersGuard]
   },
   {
-    path: AppConstants.END_URL,
+    path: 'end',
     loadChildren: './end/end.module#EndPageModule',
     // canActivate: [StoredUsersGuard]
   }

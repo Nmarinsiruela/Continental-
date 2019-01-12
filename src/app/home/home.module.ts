@@ -18,7 +18,7 @@ import { HomePage } from './home.page';
         component: HomePage
       }
     ]),
-    TranslateModule
+    TranslateModule.forChild()
   ],
   declarations: [HomePage]
 })

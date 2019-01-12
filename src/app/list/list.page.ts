@@ -8,7 +8,7 @@ import { SettingService } from '../helpers/settings.service';
   styleUrls: ['list.page.scss']
 })
 export class ListPage {
-  private langSelected: string;
+  langSelected: string;
   constructor(private service: SettingService, private translate: TranslateService) {
   }
 

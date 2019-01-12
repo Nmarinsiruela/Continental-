@@ -10,16 +10,16 @@ import { CanActivate } from '@angular/router';
 export class StoredUsersGuard implements CanActivate {
   constructor(private service: SettingService) {}
 
-  canActivate() {
-    return this.checkStorage();
-  }
-
-  async checkStorage() {
+  async canActivate() {
     const players = await this.service.getStoredPlayers();
+    const rounds = await this.service.getStoredRound();
     if (players.getValue().length > 0) {
-      return true;
+      if (rounds.getValue() === 7 ) {
+        this.service.navigatePage(AppConstants.END_URL);
+      } else {
+        this.service.navigatePage(AppConstants.GAME_URL);
+      }
     }
-    this.service.navigatePage(AppConstants.HOME_URL);
-    return false;
+    return true;
   }
 }

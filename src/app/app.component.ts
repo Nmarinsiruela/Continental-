@@ -5,6 +5,7 @@ import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import {TranslateService} from '@ngx-translate/core';
 import { SettingService } from './helpers/settings.service';
+import { AppConstants } from './helpers/Constants';
 
 @Component({
   selector: 'app-root',
@@ -28,11 +29,12 @@ export class AppComponent {
     private platform: Platform,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
-    private translate: TranslateService,
-    private service: SettingService
+    private service: SettingService,
+    private translate: TranslateService
   ) {
     this.initializeApp();
-    this.service.getStoredLanguage().then((language) => {
+    this.translate.setDefaultLang(AppConstants.ENGLISH_LANG);
+    this.service.getStoredLanguage().then(language => {
       this.translate.use(language);
     });
   }
