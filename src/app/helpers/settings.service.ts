@@ -105,8 +105,8 @@ export class SettingService {
     console.table(this.endPlayers);
     this.setNewGame();
   }
-  getEndPlayers() {
-    this.endPlayers = Object.assign([], this.getPlayers());
+  getEndPlayers(players) {
+    this.endPlayers = Object.assign([], players);
     this.endPlayers.sort((obj1, obj2) => {
       if (obj1.count > obj2.count) {
           return 1;
@@ -116,8 +116,7 @@ export class SettingService {
       }
       return 0;
   });
-
-  return this.endPlayers.slice(0, 3);
+  return this.endPlayers;
   }
 
 

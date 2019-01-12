@@ -10,22 +10,34 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content padding class='homebackground'>
+
   <ion-card text-center>
-      <ion-card-header class="text-center title-card-sized" style="font-family: ActorFont">{{ 'INTRO' | translate }}</ion-card-header>
     <ion-card-content>
+      <ion-row justify-content-center align-items-center>
+        <ion-text class="text-center" style="color: #e93578">{{ 'DECK' | translate }}</ion-text>
+      </ion-row>
+      <ion-row justify-content-center align-items-center>
+        <ion-text class="text-center" style="color: #e93578">{{ 'QUESTION' | translate }}</ion-text>
+      </ion-row>
+    </ion-card-content>
+
+  </ion-card>
+  <ion-card text-center class='contentBox'>
+    <ion-card-header class="text-center" style="color: #e93578">{{ 'INTRO' | translate }}</ion-card-header>
+    <ion-card-content style="padding-bottom: 5px">
       <ion-item>
-        <ion-input  type="text" class="text-input" autocapitalize="on" [(ngModel)]="newPlayer"
-                    (keyup.enter)="setNewPlayer(newPlayer)" placeholder="{{ 'NEW_PLAYER' | translate }}">
+        <ion-label class="text-input">{{ 'NEW_PLAYER' | translate }} {{ players.length + 1 }}:</ion-label>
+        <ion-input type="text" autofocus autocapitalize="on" [(ngModel)]="newPlayer" (keyup.enter)="setNewPlayer(newPlayer)">
         </ion-input>
       </ion-item>
       <ion-item *ngIf="maximumPlayers == true">
-        <ion-text>{{ 'LIMIT' | translate }}</ion-text>
+        <ion-text class="text-center" style="color: #e93578">{{ 'LIMIT' | translate }}</ion-text>
       </ion-item>
     </ion-card-content>
   </ion-card>
   <ion-card text-center *ngIf="players.length > 0">
-    <ion-card-header class="text-center">{{ 'PLAYERS' | translate }}</ion-card-header>
+    <ion-card-header class="text-center" style="color: #e93578">{{ 'PLAYERS' | translate }}</ion-card-header>
     <ion-card-content>
       <ion-list>
         <ion-item *ngFor="let player of players; let i = index">
@@ -33,7 +45,7 @@
           <ion-row>
             <ion-col text-center>
               <ion-button danger item-end (click)="removePlayer(player)">
-                <ion-icon name="trash"></ion-icon>
+                <ion-icon name="close"></ion-icon>
               </ion-button>
             </ion-col>
           </ion-row>
@@ -41,9 +53,8 @@
       </ion-list>
     </ion-card-content>
   </ion-card>
-    <ion-row *ngIf="players.length > 1">
-      <ion-col text-center>
-        <ion-button (click)="setPlayers()">{{ 'START' | translate }}</ion-button>
-      </ion-col>
-    </ion-row>
 </ion-content>
+
+<ion-footer >
+  <ion-button [disabled]="players.length < 2 " class="button button-full" (click)="setPlayers()">{{ 'START' | translate }}</ion-button>
+</ion-footer>

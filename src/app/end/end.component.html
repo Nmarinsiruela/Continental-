@@ -1,39 +1,42 @@
 <ion-header>
   <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button>
-    </ion-buttons>
-    <ion-title>
-      {{'RESULTS' | translate}}
-    </ion-title>
+    <ion-row>
+        <ion-menu-button></ion-menu-button>
+        <ion-title text-center>
+          {{'RESULTS' | translate}}
+        </ion-title>
+    </ion-row>
   </ion-toolbar>
 </ion-header>
 
 
-<ion-content >
-  <ion-card text-center>
+<ion-content class='gamebackground'>
+  <ion-card text-center style="margin-top: 25%">
     <ion-card-header class="text-center title-card-sized">{{'FINALSCORE' | translate}}</ion-card-header>
-    <ion-card-content>
-      <ion-list>
-        <ion-item *ngFor="let player of players; let i = index">
-          <ion-icon name="medal" color="{{color[i]}}"></ion-icon>
-          <ion-label color="primary" floating>{{player.name}}: {{player.count}}</ion-label>
-        </ion-item>
-      </ion-list>
+    <ion-card-content > 
+      <ion-grid>
+          <ion-row *ngFor="let player of players; let i = index">
+            <ion-col align-self-center>
+                <ion-icon name="medal" color="{{returnColor(i)}}" style="vertical-align: middle"></ion-icon>
+            </ion-col>
+            <ion-col align-self-center>
+                <ion-label style="color: #e93578" >{{player.name}}</ion-label>
+            </ion-col>
+            <ion-col align-self-center>
+                <ion-label style="color: #e93578" >{{player.count}} {{'POINTS' | translate}}</ion-label>
+            </ion-col>
+          </ion-row>
+      </ion-grid>
     </ion-card-content>
   </ion-card>
-
-  <ion-row>
-    <ion-col text-center>
-      <ion-button (click)="repeatGame()">{{'RESTART' | translate}}</ion-button>
-    </ion-col>
-  </ion-row>
+<ion-row>
+  <ion-col>
+      <ion-button class="button button-full" (click)="repeatGame()">{{'RESTART' | translate}}</ion-button>
+  </ion-col>
+</ion-row>
+  
 </ion-content>
 
 <ion-footer>
-  <ion-row>
-    <ion-col text-center>
-      <ion-button (click)="newGame()">{{'NEWGAME' | translate}}</ion-button>
-    </ion-col>
-  </ion-row>
+  <ion-button class="button button-full" (click)="newGame()">{{'NEWGAME' | translate}}</ion-button>
 </ion-footer>

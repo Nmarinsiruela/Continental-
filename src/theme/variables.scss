@@ -4,7 +4,8 @@
 /** Ionic CSS Variables **/
 :root {
   /** primary **/
-  --ion-color-primary: #3880ff;
+  // --ion-color-primary: #3880ff;
+  --ion-color-primary: #e93578;
   --ion-color-primary-rgb: 56, 128, 255;
   --ion-color-primary-contrast: #ffffff;
   --ion-color-primary-contrast-rgb: 255, 255, 255;
@@ -75,31 +76,100 @@
   --ion-color-light-shade: #d7d8da;
   --ion-color-light-tint: #f5f6f9;
 
-  /** bronze **/
-  --ion-color-bronze: rgba(187, 129, 20, 0.829);
-  --ion-color-bronze-rgb: 201, 138, 22;
-  --ion-color-bronze-contrast: #000000;
-  --ion-color-bronze-contrast-rgb: 0, 0, 0;
-  --ion-color-bronze-shade: #b99211;
-  --ion-color-bronze-tint: #b99211;
+  /** copper **/
+  --ion-color-copper: rgba(216, 95, 14, 0.829);
+  --ion-color-copper-rgb: 201, 138, 22;
+  --ion-color-copper-contrast: #ffffff;
+  --ion-color-copper-contrast-rgb: 0, 0, 0;
+  --ion-color-copper-shade: #b99211;
+  --ion-color-copper-tint: #b99211;
 
-  @font-face {
-    font-family: ActorFont;
-    src: url("../assets/fonts/Actor-Regular.ttf");
-  }
+  /** gold **/
+  --ion-color-gold: #d6a00a;
+  --ion-color-gold-rgb: 201, 138, 22;
+  --ion-color-gold-contrast: #ffffff;
+  --ion-color-gold-contrast-rgb: 0, 0, 0;
+  --ion-color-gold-shade: #b99211;
+  --ion-color-gold-tint: #b99211;
 
-  @font-face {
-    font-family: AmaranthFont;
-    text-transform: capitalize;
-    src: url("../assets/fonts/Amaranth-Bold.ttf");
-  }
 
+}
+
+.ion-color-gold {
+  --ion-color-base: #ebca0f;
+  --ion-color-base-rgb: 201, 138, 22;
+  --ion-color-contrast: #ffffff;
+  --ion-color-contrast-rgb: 255,255,255;
+  --ion-color-shade: #b99211;
+  --ion-color-tint: #b99211;
+}
+
+.ion-color-copper {
+  --ion-color-base: rgba(216, 95, 14, 0.829);
+  --ion-color-base-rgb: 201, 138, 22;
+  --ion-color-contrast: #ffffff;
+  --ion-color-contrast-rgb: 255,255,255;
+  --ion-color-shade: #b99211;
+  --ion-color-tint: #b99211;
 }
 
 ion-button {
-  font-family: AmaranthFont;
+  --ion-font-family: 'Amaranth', sans-serif;
+  text-transform: uppercase;
+  padding: 0px;
+  --background: black;
 }
 
-ion-label, ion-text, ion-card-header, ion-title {
-  font-family: ActorFont;
+ion-toolbar {
+  --background: black;
+}
+
+ion-footer {
+  background: black;
+}
+
+ion-menu-button {
+  color: white;
+}
+
+* {
+  font-family: 'Actor';
+}
+
+ion-title {
+  color: white;
+}
+
+ion-card-header {
+  background: white;
+  border-bottom: black 2px solid;
+}
+
+ion-card {
+  border: black 4px solid;
+  background: white;
+}
+
+ion-card-content {
+  background: white;
+}
+
+ion-title {
+  padding-right: 10%;
+}
+
+.homebackground {
+  --background: #fff url('../assets/imgs/introbackground.jpg') no-repeat;
+  background-position: center;
+  background-size: cover;
+  height: 100%;
+  background-attachment: fixed;
+}
+
+.gamebackground {
+  --background: #fff url('../assets/imgs/background.jpg') no-repeat;
+  background-position: center;
+  background-size: cover;
+  height: 100%;
+  background-attachment: fixed;
 }

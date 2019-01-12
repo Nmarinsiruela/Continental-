@@ -11,17 +11,19 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class EndComponent {
   players: Array<Player>;
-  color: Array<string>;
-  constructor(private service: SettingService,
-    private translate: TranslateService) {
-    this.color = ['warning', 'medium', 'bronze'];
+  constructor(
+    private service: SettingService,
+    private translate: TranslateService
+  ) {
   }
 
-  ionViewWillEnter() {
-    this.service.getStoredLanguage().then((language) => {
+  async ionViewWillEnter() {
+    this.service.getStoredLanguage().then(language => {
       this.translate.use(language);
     });
-    this.players = this.service.getEndPlayers();
+    const bPlayers = await this.service.getStoredPlayers();
+    const players = bPlayers.getValue();
+    this.players = this.service.getEndPlayers(players);
   }
 
   repeatGame() {
@@ -32,5 +34,18 @@ export class EndComponent {
   newGame() {
     this.service.clearStorage();
     this.service.navigatePage(AppConstants.HOME_URL);
+  }
+
+  returnColor(value: number) {
+    switch (value) {
+      case 0:
+        return 'gold';
+      case 1:
+        return 'medium';
+      case 2:
+        return 'copper';
+      default:
+        return 'black';
+    }
   }
 }

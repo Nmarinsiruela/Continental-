@@ -1,6 +1,8 @@
 {
-	"INTRO": "From 2 to 8 players!",
-	"NEW_PLAYER" : "New Player",
+    "INTRO": "From 2 to 8 players!",
+    "DECK": "Prepare your deck!",
+    "QUESTION": "Who's going to play today?",
+	"NEW_PLAYER" : "Player",
     "LIMIT" : "Limit: 8 players!",
     "PLAYERS": "Players",
     "PLA": "P",
@@ -22,7 +24,8 @@
     "GAME": "Game",
     "RESULTS": "Results",
     "FINALSCORE": "Final Score",
-    "RESTART": "Replay",
+    "POINTS": "points",
+    "RESTART": "Replay Game",
     "NEWGAME": "New Game"
     
 }

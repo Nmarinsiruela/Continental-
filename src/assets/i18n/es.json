@@ -1,6 +1,8 @@
 {
 	"INTRO": "¡De 2 a 8 jugadores!",
-    "NEW_PLAYER" : "Nuevo Jugador",
+    "DECK": "¡Prepara tu baraja!",
+    "QUESTION": "¿Quienes van a jugar hoy?",
+    "NEW_PLAYER" : "Jugador",
     "LIMIT" : "Límite: 8 jugadores!",
     "PLAYERS": "Jugadores",
     "PLA": "J",
@@ -22,6 +24,7 @@
     "GAME": "Juego",
     "RESULTS": "Resultados",
     "FINALSCORE": "Tabla Final",
-    "RESTART": "Repetir",
+    "POINTS": "puntos",
+    "RESTART": "Repetir Partida",
     "NEWGAME": "Nueva Partida"
 }
