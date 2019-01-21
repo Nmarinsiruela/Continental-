@@ -1,6 +1,7 @@
 // Ionic Variables and Theming. For more info, please see:
 // http://ionicframework.com/docs/theming/
-
+// @import url(https://fonts.googleapis.com/css?family=Amaranth:700);
+// @import url(https://fonts.googleapis.com/css?family=Actor);
 /** Ionic CSS Variables **/
 :root {
   /** primary **/
@@ -92,8 +93,21 @@
   --ion-color-gold-shade: #b99211;
   --ion-color-gold-tint: #b99211;
 
-
 }
+
+@font-face{
+  font-family: 'Amaranth';
+  font-style: normal;
+  font-weight: 700;
+  src: url('../assets/fonts/amaranth.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Actor';
+  font-style: normal;
+  font-weight: 400;
+  src: url('../assets/fonts/Actor.woff2') format('woff2');
+ }
 
 .ion-color-gold {
   --ion-color-base: #ebca0f;
@@ -113,8 +127,12 @@
   --ion-color-tint: #b99211;
 }
 
+* {
+  font-family: 'Actor';
+}
+
 ion-button {
-  --ion-font-family: 'Amaranth', sans-serif;
+  font-family: 'Amaranth';
   text-transform: uppercase;
   padding: 0px;
   --background: black;
@@ -130,10 +148,6 @@ ion-footer {
 
 ion-menu-button {
   color: white;
-}
-
-* {
-  font-family: 'Actor';
 }
 
 ion-title {
@@ -159,17 +173,9 @@ ion-title {
 }
 
 .homebackground {
-  --background: #fff url('../assets/imgs/introbackground.jpg') no-repeat;
-  background-position: center;
-  background-size: cover;
-  height: 100%;
-  background-attachment: fixed;
+  --background: #fff url('../assets/imgs/intro.jpg') 0%;
 }
 
 .gamebackground {
   --background: #fff url('../assets/imgs/background.jpg') no-repeat;
-  background-position: center;
-  background-size: cover;
-  height: 100%;
-  background-attachment: fixed;
 }

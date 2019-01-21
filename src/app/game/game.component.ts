@@ -2,8 +2,6 @@ import { Component } from '@angular/core';
 import { Player } from '../helpers/Player';
 import { SettingService } from '../helpers/settings.service';
 import { AppConstants } from '../helpers/Constants';
-import { BehaviorSubject } from 'rxjs';
-import {TranslateService} from '@ngx-translate/core';
 
 @Component({
   selector: 'app-game',
@@ -17,8 +15,7 @@ export class GameComponent {
   roundCompleted: boolean;
   buttonText: string;
   roundText: string;
-  constructor(private service: SettingService,
-              private translate: TranslateService) {
+  constructor(private service: SettingService) {
     this.actualPoints = [];
   }
 

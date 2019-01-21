@@ -1,7 +1,12 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button>
+      <!-- <ion-back-button defaultHref="home"></ion-back-button> -->
+      <ion-menu-button>
+        <ion-button>
+          <ion-icon style="color:white" src = "../../assets/icon/md-menu.svg"></ion-icon>
+        </ion-button>
+        </ion-menu-button>
     </ion-buttons>
     <ion-title text-center>
       {{'ROUND' | translate}} {{actualRound >= 0 ? actualRound: null}}
@@ -15,6 +20,7 @@
       <ion-button (click)="clearGame()">Reset</ion-button>
     </ion-col>
   </ion-row>
+  <ion-button class="button button-full" (click)="nextRound()" [disabled]="actualPoints.indexOf(null) != -1">{{buttonText | translate}}</ion-button>
   <ion-card text-center>
     <ion-card-header class="text-center title-card-sized">{{roundText | translate}}</ion-card-header>
     <ion-card-content>
@@ -34,7 +40,3 @@
     </ion-card-content>
   </ion-card>
 </ion-content>
-
-<ion-footer class="hide-on-keyboard-open">
-  <ion-button class="button button-full" (click)="nextRound()" [disabled]="actualPoints.indexOf(null) != -1">{{buttonText | translate}}</ion-button>
-</ion-footer>

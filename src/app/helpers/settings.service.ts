@@ -63,7 +63,7 @@ export class SettingService {
 
   async getStoredLanguage() {
     return this.getFromStorageAsync(AppConstants.LANG).then(language => {
-      this.language = language !== null ? language : AppConstants.ENGLISH_LANG;
+      this.language = language !== null ? language : AppConstants.SPANISH_LANG;
       return this.language;
     });
   }

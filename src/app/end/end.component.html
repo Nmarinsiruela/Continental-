@@ -1,7 +1,12 @@
 <ion-header>
   <ion-toolbar>
     <ion-row>
-        <ion-menu-button></ion-menu-button>
+        <!-- <ion-back-button defaultHref="home"></ion-back-button> -->
+        <ion-menu-button>
+          <ion-button>
+            <ion-icon style="color:white" src = "../../assets/icon/md-menu.svg"></ion-icon>
+          </ion-button>
+          </ion-menu-button>
         <ion-title text-center>
           {{'RESULTS' | translate}}
         </ion-title>
@@ -17,7 +22,7 @@
       <ion-grid>
           <ion-row *ngFor="let player of players; let i = index">
             <ion-col align-self-center>
-                <ion-icon name="medal" color="{{returnColor(i)}}" style="vertical-align: middle"></ion-icon>
+                <ion-icon [src]="'../../assets/icon/md-medal.svg'" color="{{returnColor(i)}}" style="vertical-align: middle"></ion-icon>
             </ion-col>
             <ion-col align-self-center>
                 <ion-label style="color: #e93578" >{{player.name}}</ion-label>

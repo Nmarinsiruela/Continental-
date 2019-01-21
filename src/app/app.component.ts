@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { Platform, NavController } from '@ionic/angular';
+import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import {TranslateService} from '@ngx-translate/core';
@@ -16,12 +16,12 @@ export class AppComponent {
     {
       title: 'GAME',
       url: '/home',
-      icon: 'home'
+      src: '../assets/icon/md-home.svg'
     },
     {
       title: 'OPTIONS',
       url: '/list',
-      icon: 'list'
+      src: '../assets/icon/md-list.svg'
     }
   ];
 
@@ -33,7 +33,7 @@ export class AppComponent {
     private translate: TranslateService
   ) {
     this.initializeApp();
-    this.translate.setDefaultLang(AppConstants.ENGLISH_LANG);
+    this.translate.setDefaultLang(AppConstants.SPANISH_LANG);
     this.service.getStoredLanguage().then(language => {
       this.translate.use(language);
     });
