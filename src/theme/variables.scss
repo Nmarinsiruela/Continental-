@@ -93,6 +93,14 @@
   --ion-color-gold-shade: #b99211;
   --ion-color-gold-tint: #b99211;
 
+  /** white **/
+  --ion-color-white: #ffffff;
+  --ion-color-white-rgb: 201, 138, 22;
+  --ion-color-white-contrast: #ffffff;
+  --ion-color-white-contrast-rgb: 0, 0, 0;
+  --ion-color-white-shade: #ffffff;
+  --ion-color-white-tint: #ffffff;
+
 }
 
 @font-face{
@@ -109,13 +117,22 @@
   src: url('../assets/fonts/Actor.woff2') format('woff2');
  }
 
-.ion-color-gold {
+ .ion-color-gold {
   --ion-color-base: #ebca0f;
   --ion-color-base-rgb: 201, 138, 22;
   --ion-color-contrast: #ffffff;
   --ion-color-contrast-rgb: 255,255,255;
   --ion-color-shade: #b99211;
   --ion-color-tint: #b99211;
+}
+
+.ion-color-white {
+  --ion-color-base: #ffffff;
+  --ion-color-base-rgb: 201, 138, 22;
+  --ion-color-contrast: #ffffff;
+  --ion-color-contrast-rgb: 255,255,255;
+  --ion-color-shade: #ffffff;
+  --ion-color-tint: #ffffff;
 }
 
 .ion-color-copper {
@@ -129,6 +146,7 @@
 
 * {
   font-family: 'Actor';
+  font-size: 20px;
 }
 
 ion-button {
@@ -136,6 +154,11 @@ ion-button {
   text-transform: uppercase;
   padding: 0px;
   --background: black;
+  font-size: 24px;
+}
+
+ion-icon {
+  font-size: 30px;
 }
 
 ion-toolbar {
@@ -152,15 +175,16 @@ ion-menu-button {
 
 ion-title {
   color: white;
+  font-size: 24px;
 }
 
 ion-card-header {
   background: white;
-  border-bottom: black 2px solid;
+  // border-bottom: black 2px solid;
 }
 
 ion-card {
-  border: black 4px solid;
+  // border: black 4px solid;
   background: white;
 }
 

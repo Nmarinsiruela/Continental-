@@ -13,6 +13,7 @@
     </ion-title>
   </ion-toolbar>
 </ion-header>
+
 <ion-content padding class='homebackground'>
 
   <ion-card text-center>
@@ -38,7 +39,6 @@
         <ion-button [disabled]="players.length > 7 " class="button button-full" (click)="setNewPlayer(newPlayer)" >{{ 'ADDPLAYER' | translate }}</ion-button>
     </ion-card-content>
   </ion-card>
-  <ion-button *ngIf="players.length > 1 " class="button button-full" (click)="setPlayers()">{{ 'START' | translate }}</ion-button>
   <ion-card text-center *ngIf="players.length > 0">
     <ion-card-header class="text-center" style="color: #e93578">{{ 'PLAYERS' | translate }}</ion-card-header>
     <ion-card-content>
@@ -47,8 +47,8 @@
           <ion-label item-start>{{ 'PLA' | translate }}{{i+1}}: {{player.name}}</ion-label>
           <ion-row>
             <ion-col text-center>
-              <ion-button danger item-end (click)="removePlayer(player)">
-                <ion-icon src = "../../assets/icon/md-close.svg"></ion-icon>
+              <ion-button danger item-end (click)="removePlayer(player)" style="font-size: 20px">
+                <ion-icon src = "../../assets/icon/md-close.svg" style="font-size: 22px"></ion-icon>
               </ion-button>
             </ion-col>
           </ion-row>
@@ -57,3 +57,7 @@
     </ion-card-content>
   </ion-card>
 </ion-content>
+
+<ion-footer >
+  <ion-button [disabled]="players.length < 2 " class="button button-full" (click)="setPlayers()">{{ 'START' | translate }}</ion-button>
+</ion-footer> 

@@ -15,28 +15,31 @@
 </ion-header>
 
 <ion-content padding class='gamebackground'>
-  <ion-row>
-    <ion-col text-end>
+  <ion-row text-end>
       <ion-button (click)="clearGame()">Reset</ion-button>
-    </ion-col>
   </ion-row>
-  <ion-button class="button button-full" (click)="nextRound()" [disabled]="actualPoints.indexOf(null) != -1">{{buttonText | translate}}</ion-button>
   <ion-card text-center>
-    <ion-card-header class="text-center title-card-sized">{{roundText | translate}}</ion-card-header>
-    <ion-card-content>
-        <ion-grid>
-            <ion-row *ngFor="let player of players; let i = index">
-              <ion-col align-self-center>
-                  <ion-label color="primary">{{player.name}}</ion-label>
-              </ion-col>
-              <ion-col align-self-center>
-                  <ion-input type="number" [(ngModel)]="actualPoints[i]" placeholder="{{'ADDPOINT' | translate}}"></ion-input>
-              </ion-col>
-              <ion-col align-self-center>
-                  <ion-label style="color: #e93578" >Pts: {{player.count}}</ion-label>
-              </ion-col>
-            </ion-row>
-        </ion-grid>
-    </ion-card-content>
+  <ion-row text-end>
+  <ion-col align-self-center>
+      <ion-text class="text-center title-card-sized" style="color: #e93578">{{roundText | translate}}</ion-text>
+      </ion-col>
+  </ion-row>
+      <ion-grid>
+          <ion-row *ngFor="let player of players; let i = index">
+            <ion-col align-self-center>
+                <ion-label color="primary">{{player.name}}</ion-label>
+            </ion-col>
+            <ion-col align-self-center>
+                <ion-input type="number" [(ngModel)]="actualPoints[i]" placeholder="{{'ADDPOINT' | translate}}"></ion-input>
+            </ion-col>
+            <ion-col align-self-center>
+                <ion-label style="color: #e93578" >Pts: {{player.count}}</ion-label>
+            </ion-col>
+          </ion-row>
+      </ion-grid>
   </ion-card>
 </ion-content>
+
+<ion-footer>
+  <ion-button class="button button-full" (click)="nextRound()" [disabled]="actualPoints.indexOf(null) != -1">{{buttonText | translate}}</ion-button>
+</ion-footer> 
