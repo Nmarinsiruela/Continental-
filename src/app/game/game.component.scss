@@ -1,8 +1,10 @@
 ion-col {
   background: white;
   margin: 1px;
+  // padding: 10px;
 }
 
 ion-input {
-  padding: 0px;
+  --padding-bottom: 0px;
+  --padding-top: 0px;
 }

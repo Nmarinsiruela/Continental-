@@ -14,11 +14,18 @@
 </ion-header>
 
 <ion-content>
-  <ion-item>
-      <ion-label>{{'LANGUAGE' | translate}}</ion-label>
-      <ion-select [(ngModel)]="langSelected" interface="popover" (ionChange)="selectLanguage(langSelected)">
-        <ion-select-option value="en">{{'ENGLISH' | translate}}</ion-select-option>
-        <ion-select-option value="es">{{'SPANISH' | translate}}</ion-select-option>
-      </ion-select>
-    </ion-item>
+<ion-item>
+  <ion-label>{{'LANGUAGE' | translate}}</ion-label>
+  <ion-select [(ngModel)]="langSelected" interface="popover" (ionChange)="selectLanguage(langSelected)">
+    <ion-select-option value="en">{{'ENGLISH' | translate}}</ion-select-option>
+    <ion-select-option value="es">{{'SPANISH' | translate}}</ion-select-option>
+  </ion-select>
+</ion-item>
+<ion-item>
+  <ion-label>{{'AUDIOENABLE' | translate}}</ion-label>
+  <ion-select [(ngModel)]="audioEnabled" interface="popover" (ionChange)="setAudio(audioEnabled)">
+    <ion-select-option value='false'>{{'AUDIOOFF' | translate}}</ion-select-option>
+    <ion-select-option value='true'>{{'AUDIOON' | translate}}</ion-select-option>
+  </ion-select>
+</ion-item>
 </ion-content>

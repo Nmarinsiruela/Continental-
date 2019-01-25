@@ -3,9 +3,9 @@
     <ion-buttons slot="start">
       <!-- <ion-back-button defaultHref="home"></ion-back-button> -->
       <ion-menu-button>
-      <ion-button>
-        <ion-icon style="color:white" src = "../../assets/icon/md-menu.svg"></ion-icon>
-      </ion-button>
+        <ion-button>
+          <ion-icon style="color:white" src="../../assets/icon/md-menu.svg"></ion-icon>
+        </ion-button>
       </ion-menu-button>
     </ion-buttons>
     <ion-title text-center>
@@ -16,31 +16,38 @@
 
 <ion-content class='gamebackground'>
   <ion-card text-center style="margin-top: 25%; border: 0">
-  <ion-row>
-    <ion-col align-self-center>
-      <ion-text class="text-center title-card-sized" style="color: #e93578">{{ 'RESULTS' | translate }}</ion-text>
-    </ion-col>
-  </ion-row>
-      <ion-grid>
-        <ion-row>
-          <ion-col align-self-center>
-            <ion-text class="text-center title-card-sized" style="color: #e93578">{{ 'FINALSCORE' | translate }}</ion-text>
-          </ion-col>
-        </ion-row>
-        <ion-row *ngFor="let player of players; let i = index">
-          <ion-col align-self-center>
-              <ion-icon src="{{returnClass(i)}}" color="{{returnColor(i)}}" style="vertical-align: middle"></ion-icon>
-              <ion-label style="color: #e93578" >{{player.name}}</ion-label>
-          </ion-col>
-          <ion-col align-self-center>
-              <ion-icon src="{{returnClass(i)}}" color="white" style="vertical-align: middle"></ion-icon>
-              <ion-label style="color: #e93578" >{{player.count}} {{'POINTS' | translate}}</ion-label>
-          </ion-col>
-        </ion-row>
-        <ion-row>
+    <ion-row text-center>
+      <ion-col  style="background: black; color:white; text-transform: uppercase; margin-bottom: 10px;">
+        <ion-text class="text-center" style=" font-family: Amaranth">
+          {{'RESULTS' | translate}}
+        </ion-text>
+      </ion-col>
+    </ion-row>
+    <ion-grid>
+      <ion-row>
+        <ion-col style="background: #e93578; color: white">
+          <ion-label>{{'PLAYERS' | translate}}</ion-label>
+        </ion-col>
+        <ion-col style="background: #e93578; color: white">
+          <ion-label>{{'TOTAL' | translate}}</ion-label>
+        </ion-col>
+      </ion-row>
+      <ion-row *ngFor="let player of players; let i = index">
+        <ion-col>
+          <ion-icon src="{{returnClass(i)}}" color="{{returnColor(i)}}" style="vertical-align: middle"></ion-icon>
+          <ion-label style="color: #e93578">{{player.name}}</ion-label>
+        </ion-col>
+        <ion-col>
+          <ion-icon src="{{returnClass(i)}}" color="white" style="vertical-align: middle"></ion-icon>
+          <ion-label style="color: #e93578">{{player.count}} {{'POINTS' | translate}}</ion-label>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col style="background: transparent">
           <ion-button class="button button-full" (click)="repeatGame()">{{'RESTART' | translate}}</ion-button>
-        </ion-row>
-      </ion-grid>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
   </ion-card>
 </ion-content>
 

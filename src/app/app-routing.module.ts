@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { AppConstants } from './helpers/Constants';
 import { StoredUsersGuard } from './helpers/StoredUsersGuard';
 const routes: Routes = [
   {

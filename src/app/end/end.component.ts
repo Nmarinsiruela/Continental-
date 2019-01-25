@@ -43,19 +43,19 @@ export class EndComponent {
       case 2:
         return 'copper';
       default:
-        return 'black';
+        return 'white';
     }
   }
   returnClass(value: number) {
     switch (value) {
       case 0:
-        return "../../assets/icon/1.svg";
+        return '../../assets/icon/1.svg';
       case 1:
-        return "../../assets/icon/2.svg";
+        return '../../assets/icon/2.svg';
       case 2:
-        return "../../assets/icon/3.svg";
+        return '../../assets/icon/3.svg';
       default:
-        return '';
+        return '../../assets/icon/3.svg';
     }
   }
 }

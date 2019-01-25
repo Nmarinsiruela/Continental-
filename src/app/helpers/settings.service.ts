@@ -4,15 +4,19 @@ import { Storage } from '@ionic/storage';
 import { AppConstants } from './Constants';
 import { BehaviorSubject } from 'rxjs';
 import { Router } from '@angular/router';
+
 @Injectable({
   providedIn: 'root'
 })
 export class SettingService {
   private players = new BehaviorSubject(Array<Player>());
-  private actualRound = new BehaviorSubject(0);
+  private actualRound = new BehaviorSubject(+AppConstants.STARTER_ROUND);
   private endPlayers: Array<Player>;
   language: string;
-  constructor(private storage: Storage, private router: Router) {
+  enabledAudio: boolean;
+  audio = new Audio();
+  constructor(private storage: Storage,
+              private router: Router) {
   }
 
   getPlayers() {
@@ -46,7 +50,7 @@ export class SettingService {
 
   // GAME METHODS
 
-  async getStoredPlayers() {
+  getStoredPlayers() {
     return this.getFromStorageAsync(AppConstants.PLAYERS).then(playersArray => {
       const data = JSON.parse(playersArray);
       this.players = data !== null ? new BehaviorSubject(data) : new BehaviorSubject([]);
@@ -54,22 +58,29 @@ export class SettingService {
     });
   }
 
-  async getStoredRound() {
+  getStoredRound() {
     return this.getFromStorageAsync(AppConstants.ROUNDS).then(actualRound => {
       this.actualRound = new BehaviorSubject(+actualRound);
       return this.actualRound;
     });
   }
 
-  async getStoredLanguage() {
+  getStoredLanguage() {
     return this.getFromStorageAsync(AppConstants.LANG).then(language => {
       this.language = language !== null ? language : AppConstants.SPANISH_LANG;
       return this.language;
     });
   }
 
-  async getFromStorageAsync(keyStorage) {
-    return await this.storage.get(keyStorage);
+  getStoredAudio() {
+    return this.getFromStorageAsync(AppConstants.AUDIO).then(audio => {
+      this.enabledAudio = audio !== null ? audio === true : true;
+      return this.enabledAudio;
+    });
+  }
+
+  getFromStorageAsync(keyStorage) {
+    return this.storage.get(keyStorage);
   }
 
   clearStorage() {
@@ -77,7 +88,7 @@ export class SettingService {
     this.storage.remove(AppConstants.ROUNDS);
     this.navigatePage(AppConstants.HOME_URL);
     this.players = new BehaviorSubject([]);
-    this.actualRound = new BehaviorSubject(0);
+    this.actualRound = new BehaviorSubject(+AppConstants.STARTER_ROUND);
   }
 
   navigatePage(destiny: string) {
@@ -93,6 +104,9 @@ export class SettingService {
 
     this.storage.set(AppConstants.PLAYERS, JSON.stringify(this.getPlayers()));
     this.storage.set(AppConstants.ROUNDS, '' + this.getRound());
+    if (this.getRound() < 8) {
+      this.playAudio('' + this.getRound());
+    }
   }
 
   clearPlayersScore() {
@@ -116,6 +130,13 @@ export class SettingService {
   return this.endPlayers;
   }
 
+  playAudio(round: string) {
+    if (this.enabledAudio === true) {
+      this.audio = new Audio(`../../assets/audio/${this.language}/round-${round}.mp3`);
+      this.audio.load();
+      this.audio.play();
+    }
+  }
 
   // OPTIONS METHODS
 
@@ -126,5 +147,14 @@ export class SettingService {
 
   getLanguage() {
     return this.language;
+  }
+
+  getAudioEnabled() {
+    return this.enabledAudio;
+  }
+
+  setAudio(audioEnabled) {
+    this.enabledAudio = audioEnabled;
+    this.storage.set(AppConstants.AUDIO, this.enabledAudio);
   }
 }

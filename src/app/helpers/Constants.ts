@@ -1,9 +1,9 @@
 export const AppConstants  = {
   get STARTER_ROUND(): number {
-    return 0;
+    return 1;
   },
   get END_GAME(): number {
-    return 6;
+    return 7;
   },
   get BUTTON_TEXT_BASE(): string {
     return 'NEXTROUND';
@@ -19,6 +19,9 @@ export const AppConstants  = {
   },
   get LANG(): string {
     return 'language';
+  },
+  get AUDIO(): string {
+    return 'audio';
   },
   get GAME_URL(): string {
     return '/game';
@@ -40,19 +43,19 @@ export const AppConstants  = {
 
   GET_ROUND_TEXT(value): string {
     switch (value) {
-      case 0:
-        return 'ROUND1';
       case 1:
-        return 'ROUND2';
+        return 'ROUND1';
       case 2:
-        return 'ROUND3';
+        return 'ROUND2';
       case 3:
-        return 'ROUND4';
+        return 'ROUND3';
       case 4:
-        return 'ROUND5';
+        return 'ROUND4';
       case 5:
-        return 'ROUND6';
+        return 'ROUND5';
       case 6:
+        return 'ROUND6';
+      case 7:
         return 'ROUND7';
     }
   }

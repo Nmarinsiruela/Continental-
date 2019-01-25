@@ -37,6 +37,9 @@ export class AppComponent {
     this.service.getStoredLanguage().then(language => {
       this.translate.use(language);
     });
+    this.service.getStoredAudio().then(audio => {
+      this.service.setAudio(audio);
+    });
   }
 
   initializeApp() {

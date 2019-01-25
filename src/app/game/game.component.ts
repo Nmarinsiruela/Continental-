@@ -30,6 +30,7 @@ export class GameComponent {
         }
         this.roundText = AppConstants.GET_ROUND_TEXT(this.actualRound);
         this.setButtonText();
+        this.service.playAudio('' + this.actualRound);
       });
     });
   }

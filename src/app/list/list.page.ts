@@ -9,18 +9,26 @@ import { SettingService } from '../helpers/settings.service';
 })
 export class ListPage {
   langSelected: string;
+  audioEnabled: string;
   constructor(private service: SettingService, private translate: TranslateService) {
   }
 
   ionViewWillEnter() {
     this.service.getStoredLanguage().then((language) => {
       this.langSelected = language;
+      this.service.getStoredAudio().then((audio) => {
+        this.audioEnabled = '' + audio;
+      });
     });
   }
 
   selectLanguage(language: string) {
     this.service.setLanguage(language);
     this.translate.use(language);
+  }
+
+  setAudio(audioEnabled) {
+    this.service.setAudio(audioEnabled === 'true');
   }
 
 }
