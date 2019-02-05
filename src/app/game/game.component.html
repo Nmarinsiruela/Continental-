@@ -54,7 +54,7 @@
           <ion-label>{{player.name}}</ion-label>
         </ion-col>
         <ion-col >
-          <ion-input type="number" [(ngModel)]="actualPoints[i]" placeholder="{{'ADDPOINT' | translate}}" style="padding: 0px"></ion-input>
+          <ion-input type="number" autofocus="true" [(ngModel)]="actualPoints[i]" placeholder="{{'ADDPOINT' | translate}}" style="padding: 0px" (keyup.enter)="nextRound()"></ion-input>
         </ion-col>
         <ion-col >
           <ion-label>Pts: {{player.count}}</ion-label>

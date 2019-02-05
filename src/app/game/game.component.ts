@@ -44,17 +44,19 @@ export class GameComponent {
   }
 
   nextRound() {
-    this.service.setNewRound(this.actualPoints);
-    const newRound = this.service.getRound();
-
-    if (newRound === AppConstants.END_GAME + 1) {
-      this.endGame();
-    } else {
-      this.actualRound = newRound;
-      this.roundText = AppConstants.GET_ROUND_TEXT(this.actualRound);
-      this.setButtonText();
-      for (let x = 0; x < this.players.length; x++) {
-        this.actualPoints[x] = null;
+    const allSet = this.actualPoints.indexOf(null) === -1;
+    if (allSet === true) {
+      this.service.setNewRound(this.actualPoints);
+      const newRound = this.service.getRound();
+      if (newRound === AppConstants.END_GAME + 1) {
+        this.endGame();
+      } else {
+        this.actualRound = newRound;
+        this.roundText = AppConstants.GET_ROUND_TEXT(this.actualRound);
+        this.setButtonText();
+        for (let x = 0; x < this.players.length; x++) {
+          this.actualPoints[x] = null;
+        }
       }
     }
   }
